@@ -6,6 +6,10 @@ var cpu_histogram = [];
 
 function DynamicCPU() {
 
+    /*
+    * Ở đây nó sẽ chạy 1 mảng chứa 61 phần tử và từ [0,n] - [60,n]
+    * mình đưa về string sau đó xóa 60 và dấu phẩy đi lấy giá trị % CPU thôi :))
+    */
     var statusCPU = `${cpu_histogram[60]}`;
     statusCPU = statusCPU.replace(/60,/g,"");
 
@@ -13,15 +17,16 @@ function DynamicCPU() {
     data.addColumn('number', 'X');
     data.addColumn('number', `${statusCPU}% CPU`);
 
-    data.addRows(cpu_histogram);
+    data.addRows(cpu_histogram); // 
 
     var options = {
         hAxis: {
-            title: 'Status Dynamic CPU'
+            title: 'CPU Dynamic Status'
         },
         vAxis: {
-            title: `CPU Load ${statusCPU} %`,
+            title: `CPU LOAD`,
             viewWindow: {
+                // min vs max của Y 
                 min: 0,
                 max: 100,
             }
@@ -38,7 +43,6 @@ function DynamicCPU() {
 
 var socket = io();
 socket.on('cpu histogram', function(cpuHistogram) {
-    // console.log(cpuHistogram);
     cpu_histogram = cpuHistogram;
     if(cpu_charloaded){
         DynamicCPU();

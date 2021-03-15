@@ -18,10 +18,10 @@ function DynamicMEM() {
 
     var options = {
         hAxis: {
-            title: 'Status Dynamic Memory'
+            title: 'Memory Dynamic Status'
         },
         vAxis: {
-            title: `Used ${statusMem} MB MEM`,
+            title: `MEMORY USED`,
             viewWindow: {
                 min: 0,
                 max: parseInt(mem_total + 1),
